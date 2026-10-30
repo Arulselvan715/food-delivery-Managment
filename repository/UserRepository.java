@@ -9,10 +9,12 @@ public class UserRepository {
 
     private List<User> users = new ArrayList<>();
 
+    // Save user
     public void save(User user) {
         users.add(user);
     }
 
+    // Find user by ID
     public User findById(int id) {
         for (User user : users) {
             if (user.getUserId() == id) {
@@ -22,6 +24,7 @@ public class UserRepository {
         return null;
     }
 
+    // Find user by email
     public User findByEmail(String email) {
         for (User user : users) {
             if (user.getEmail().equalsIgnoreCase(email)) {
@@ -31,18 +34,35 @@ public class UserRepository {
         return null;
     }
 
+    // Get all users
     public List<User> findAll() {
-        return users;
+        return new ArrayList<>(users);
     }
 
+    // Update user
+    public boolean update(User updatedUser) {
+        User user = findById(updatedUser.getUserId());
+
+        if (user == null) {
+            return false;
+        }
+
+        user.setName(updatedUser.getName());
+        user.setPhone(updatedUser.getPhone());
+        user.setAddress(updatedUser.getAddress());
+
+        return true;
+    }
+
+    // Delete user
     public boolean delete(int id) {
         User user = findById(id);
 
-        if (user != null) {
-            users.remove(user);
-            return true;
+        if (user == null) {
+            return false;
         }
 
-        return false;
+        users.remove(user);
+        return true;
     }
 }
