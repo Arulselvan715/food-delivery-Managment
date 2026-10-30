@@ -1,4 +1,4 @@
-
+package Models;
 public class Payment {
 
     private int paymentId;
@@ -7,9 +7,9 @@ public class Payment {
     private String paymentMethod;
     private String paymentStatus;
 
-    public Payment(int paymentId, int orderId,
-            double amount, String paymentMethod,
-            String paymentStatus) {
+    // Constructor
+    public Payment(int paymentId, int orderId, double amount,
+                   String paymentMethod, String paymentStatus) {
 
         this.paymentId = paymentId;
         this.orderId = orderId;
@@ -18,6 +18,7 @@ public class Payment {
         this.paymentStatus = paymentStatus;
     }
 
+    // Getters
     public int getPaymentId() {
         return paymentId;
     }
@@ -36,5 +37,35 @@ public class Payment {
 
     public String getPaymentStatus() {
         return paymentStatus;
+    }
+
+    // Setters
+    public void setPaymentId(int paymentId) {
+        this.paymentId = paymentId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    // Display Payment Details
+    public void displayPayment() {
+        System.out.println("Payment ID: " + paymentId);
+        System.out.println("Order ID: " + orderId);
+        System.out.println("Amount: Rs." + amount);
+        System.out.println("Payment Method: " + paymentMethod);
+        System.out.println("Payment Status: " + paymentStatus);
     }
 }
