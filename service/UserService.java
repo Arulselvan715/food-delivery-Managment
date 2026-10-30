@@ -13,6 +13,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    // User Registration
     public String register(String name, String email,
                            String password, String phone,
                            String address) {
@@ -43,6 +44,7 @@ public class UserService {
         return "Registration successful!";
     }
 
+    // User Login
     public User login(String email, String password) {
 
         User user = userRepository.findByEmail(email);
@@ -54,10 +56,12 @@ public class UserService {
         return null;
     }
 
+    // View Profile
     public User viewProfile(int id) {
         return userRepository.findById(id);
     }
 
+    // Update Profile
     public String updateProfile(int id, String name,
                                 String phone, String address) {
 
@@ -71,13 +75,17 @@ public class UserService {
             return "Fields cannot be empty!";
         }
 
-        user.setName(name);
-        user.setPhone(phone);
-        user.setAddress(address);
+        User updatedUser = new User(
+            id, name, user.getEmail(),
+            user.getPassword(), phone, address
+        );
+
+        userRepository.update(updatedUser);
 
         return "Profile updated successfully!";
     }
 
+    // Delete Account
     public String deleteAccount(int id) {
 
         if (userRepository.delete(id)) {
